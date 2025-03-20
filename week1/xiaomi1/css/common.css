@@ -1,0 +1,841 @@
+@font-face {
+  font-family: 'icomoon';
+  src: url('../fonts/');
+  src: url('../fonts/icomoon.eot?i4jm24#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?i4jm24') format('truetype'),
+    url('../fonts/icomoon.woff?i4jm24') format('woff'),
+    url('../fonts/icomoon.svg?i4jm24#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+/* 版心 */
+.container {
+  width: 1226px;
+  margin: 0 auto;
+
+}
+
+.bug {
+  background-color: #333;
+}
+
+/* 头部上开始 */
+.site-topbar {
+  position: relative;
+  width: 100vw;
+  z-index: 30;
+  height: 40px;
+  color: #b0b0b0;
+  background-color: #333;
+  overflow: visible;
+}
+
+/* .site-topbar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+  min-width: 100%;
+  height: 100%;
+  background-color: #333;
+  z-index: -1;
+  
+}  */
+
+/* bug修复 内容背景分层 根本没修好 浪费感情！！！ */
+
+/* 保持原有容器样式 */
+.site-topbar .container {
+  width: 1226px;
+  margin: 0 auto;
+  height: 100%;
+  position: relative;
+  /* 保证内容层级 */
+}
+
+.site-topbar .top-nav {
+  float: left;
+  height: 40px;
+  line-height: 40px;
+}
+
+.site-topbar a {
+  display: inline-block;
+  color: #b0b0b0;
+  line-height: 40px;
+}
+
+.site-topbar a:hover {
+  color: #FFFFFF;
+}
+
+
+.site-topbar .sep {
+  margin: 0 .3em;
+  color: #424242;
+}
+
+.site-topbar .container .UserInfo {
+  position: relative;
+  float: right;
+  height: 40px;
+  line-height: 40px;
+}
+
+.site-topbar .container .topbar-car {
+  position: relative;
+  display: block;
+  float: right;
+  width: 120px;
+  height: 40px;
+  margin-left: 15px;
+  transition: all .2s;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* ！！！切记切记没有空格！！！ */
+.topbar-car.active {
+  background-color: #fff !important;
+}
+
+.site-topbar .container .topbar-car a {
+  font-family: 'icomoon';
+}
+
+.topbar-car.active a {
+  color: #ff6700 !important;
+}
+
+.download {
+  position: relative;
+
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: -33px;
+  background-color: #fff;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  z-index: 1000;
+  width: 125px;
+  text-align: center;
+  font-size: 14px;
+  border-top: 2px solid #f6f6f6;
+  color: #333;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all .3s ease;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
+}
+
+.download:hover .dropdown {
+  display: block;
+  z-index: 1000;
+  opacity: 1;
+  max-height: 155px;
+}
+
+.triangle {
+  display: none;
+  position: absolute;
+  top: 32px;
+  left: 25px;
+  /* 水平居中 */
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #fff;
+  z-index: 1003;
+}
+
+
+.download:hover .triangle {
+  display: block;
+  z-index: 1001;
+}
+
+.carmini {
+  display: block;
+  opacity: 0;
+  position: absolute;
+  width: 315px;
+  height: 100px;
+  background-color: #fff;
+  top: 100%;
+  right: 0;
+  max-height: 0;
+  overflow: hidden;
+  text-align: center;
+  color: #424242;
+  line-height: 100px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  transition: all .3s ease;
+}
+
+.topbar-car.active .carmini {
+  opacity: 1;
+  max-height: 100px;
+}
+
+/* 头部上结束 */
+
+
+
+/* 头部下开始 */
+.site-header {
+  position: relative;
+  z-index: 20;
+  height: 100px;
+  /* border-bottom: 2px solid #E0E0E0; */
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  
+       水平偏移为 0（不左右偏移）
+       垂直向下偏移 2px
+       模糊半径（阴影柔和度）
+       rgba(0,0,0,0.05)：颜色为透明度黑色
+    */
+  overflow: visible;
+  border-bottom: none !important;
+  /* 强制移除原有边框 */
+}
+
+
+
+
+
+
+
+
+.site-header .header-logo {
+  float: left;
+  width: 62px;
+  margin-top: 22px;
+
+}
+
+.site-header .header-logo .logo {
+  position: relative;
+  display: block;
+  width: 56px;
+  height: 56px;
+  overflow: hidden;
+  background: url(../images/logo-mi2.png) no-repeat;
+  background-size: 56px;
+}
+
+.site-header .header-nav {
+  float: left;
+  width: 850px;
+}
+
+.header-nav .nav-list {
+  position: relative;
+  z-index: 10;
+  float: left;
+  width: 1100px;
+  height: 88px;
+  margin: 0;
+  padding: 12px 0 0 30px;
+  list-style-type: none;
+  font-size: 16px;
+}
+
+.nav-list .nav-category {
+  position: relative;
+  float: left;
+  width: 135px;
+  padding-right: 15px;
+  /* 用了一个空格来占位 */
+}
+
+.nav-list .nav-item {
+  float: left;
+}
+
+.nav-list .nav-item .link {
+  display: block;
+  padding: 26px 10px 38px;
+  color: #333;
+  transition: color .2s;
+}
+
+.header-search {
+  float: right;
+  width: 296px;
+  margin-top: 25px;
+}
+
+.header-search .search-form {
+  position: relative;
+  width: 296px;
+  height: 50px;
+  z-index: 20;
+}
+
+
+.search-form .search-text,
+.search-form .search-btn {
+  position: absolute;
+  top: 0;
+  border: 1px solid #e0e0e0;
+  transition: all .2s;
+}
+
+
+
+
+.search-form .search-text {
+  right: 51px;
+  z-index: 1;
+  width: 223px;
+  height: 48px;
+  padding: 0 10px;
+  font-size: 14px;
+  line-height: 48px;
+}
+
+
+.search-form .search-btn {
+  right: 0;
+  z-index: 2;
+  width: 52px;
+  height: 48px;
+  font-size: 16px;
+  line-height: 24px;
+  background-color: #fff;
+  color: #616161;
+}
+
+.iconfont {
+  font-family: 'icomoon';
+}
+
+
+.search-nav {
+  position: absolute;
+  top: 100%;
+  left: 22px;
+  width: 223px;
+  max-height: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: #fff;
+  border: 1px solid transparent;
+  border-top: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.search-form.active .search-nav {
+  max-height: 240px;
+  border-color: #ff6700;
+}
+
+
+.search-form.active .search-text,
+.search-form.active .search-btn {
+  border-color: #ff6700 !important;
+}
+
+.search-nav li {
+  height: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+  color: #424242;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.search-nav li:hover {
+  background: #f5f5f5;
+}
+
+.site-category {
+  position: absolute;
+  top: 88px;
+  left: -92px;
+  z-index: 21;
+  width: 234px;
+  height: 460px;
+  font-size: 14px;
+}
+
+.site-category .site-category-list {
+  padding: 20px 0;
+  list-style-type: none;
+  background: rgba(105, 101, 101, .6);
+}
+
+.site-category .site-category-list .title {
+  color: #fff;
+  position: relative;
+  display: block;
+  padding-left: 30px;
+  height: 42px;
+  line-height: 42px;
+  width: 234px;
+}
+
+.site-category .site-category-list .title::after {
+  font-family: 'icomoon';
+  position: absolute;
+  content: "";
+  right: 23px;
+  font-size: 24px;
+}
+
+
+
+/* 默认隐藏手机右拉菜单 */
+.category-nav {
+  display: none;
+}
+
+/* 鼠标经过 title1 所在的 li 时显示右拉菜单 */
+/* 这个选择器只会改变对应的子元素 所以不用额外定义一个title */
+.category-item:hover .category-nav {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 460px;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* 撑开盒子 */
+  width: max-content;
+  left: 100%;
+  top: 0;
+  position: absolute;
+}
+
+.category-item:hover .title {
+  background-color: #ff6700;
+}
+
+.category-nav ul {
+
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+
+
+.category-nav ul li {
+  min-width: 270px;
+  /* 改一下 后边电视的就可以撑开了 */
+  padding-right: 20px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+/* 取名要注意 盒子样式被覆盖了 */
+/* 图片盒子 */
+.category-nav ul li .img-box1 {
+  width: 50px;
+  height: 50px;
+  margin: 0 30px;
+  background-size: cover;
+  background-position: center;
+
+}
+
+/* 文字盒子 */
+.category-nav ul li .text-box {
+  font-size: 14px;
+  color: #333;
+}
+
+
+
+
+
+/* 小米下拉框 */
+.nav-item.xiaomi .link {
+  transition: all 0.3s ease;
+}
+
+
+.nav-item.xiaomi:hover .link {
+  color: #ff6700;
+}
+
+
+.list-nav {
+  position: absolute;
+  left: 0;
+  top: 100px;
+  width: 100%;
+  max-height: 0;
+  overflow-x: auto;
+  /* 允许水平滚动 */
+  overflow-y: hidden;
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+/* 一个令人绝望的bug待修理 试试响应式布局*/
+/* 屏幕宽度小于1220px时的样式 还是有点小bug 不管了 */
+@media (max-width: 1226px) {
+  .list-nav {
+    width: max-content;
+    /* 或 auto，根据需要 */
+    max-height: 0;
+    overflow-y: hidden;
+    /* 下拉动画时控制高度 */
+    overflow-x: visible;
+    /* 允许横向溢出 */
+    transition: all 0.3s ease;
+    z-index: 100;
+  }
+}
+
+
+/* 当下拉框添加了 active 类时，展开显示 */
+.list-nav.active {
+  max-height: 235px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.list-nav-item {
+  margin: 0;
+  padding: 20px;
+  background-color: #fff;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  /* 为了适应浏览器视口变化 */
+}
+
+.list-nav-item li {
+  position: relative;
+  width: 215px;
+  height: 235px;
+  margin: 0 10px;
+  text-align: center;
+  flex-shrink: 0;
+  /* 阻止收缩 */
+}
+
+.list-nav-item li a {
+  position: relative;
+  display: block;
+  /* width: 200px; */
+  text-decoration: none;
+  color: #333;
+  text-align: center;
+}
+
+
+.img-box {
+  position: absolute;
+  top: 20px;
+  width: 120px;
+  height: 200px;
+  left: 50%;
+  /* 水平居中 */
+  transform: translateX(-50%);
+
+  background-size: contain;
+  /* 背景图片会被缩放，使其完全适应容器，但保持原有比例 */
+  background-position: center;
+  /* 背景图片会在容器中水平和垂直都居中显示 */
+  background-repeat: no-repeat;
+
+  top: -40px;
+}
+
+
+.phone-model {
+  width: 215px;
+  position: absolute;
+  top: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  /* margin-top: 1px; */
+}
+
+
+.phone-price {
+  width: 215px;
+  position: absolute;
+  top: 140px;
+  color: #ff6700;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+
+/* redmi下拉框 */
+.nav-item.redmi .link {
+  transition: all 0.3s ease;
+}
+
+.nav-item.redmi:hover .link {
+  color: #ff6700;
+}
+
+
+.list-nav1 {
+  position: absolute;
+  left: 0;
+  top: 100px;
+  width: 100%;
+  max-height: 0;
+  overflow-x: auto;
+  /* 允许水平滚动 */
+  overflow-y: hidden;
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+
+
+
+/* 当下拉框添加了 active 类时，展开显示 */
+.list-nav1.active {
+  max-height: 235px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+
+/* 头部下结束 */
+
+/* 轮播图开始 */
+
+.home-hero-container {
+  position: relative;
+  z-index: 10;
+}
+
+.home-hero {
+  position: relative;
+  margin-bottom: 26px;
+
+}
+
+.home-hero-swiper {
+  position: relative;
+  height: 460px;
+  overflow: hidden;
+}
+
+
+.swiper-wrapper {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.swiper-button-prev {
+  background: url(../images/icon-slides.png) no-repeat -84px 50%;
+  left: 234px;
+  right: auto;
+}
+
+.swiper-button-next {
+  background: url(../images/icon-slides.png) no-repeat -125px 50%;
+  right: 0;
+  left: auto;
+}
+
+.swiper-button-prev:hover {
+  background-position: 0 50%;
+}
+
+.swiper-button-next:hover {
+  background-position: -42px 50%;
+}
+
+
+.swiper-button-next,
+.swiper-button-prev {
+  position: absolute;
+  top: 50%;
+  width: 41px;
+  height: 69px;
+  margin-top: -35px;
+  z-index: 10;
+  cursor: pointer;
+  outline: none;
+}
+
+.home-hero-swiper .swiper-wrapper a {
+  display: block;
+  background: url(../images/placeholder-220.png) no-repeat 620px;
+}
+
+
+
+.home-hero-swiper .swiper-wrapper img {
+  display: block;
+  width: 1226px;
+  height: 460px;
+}
+
+
+.swiper-pagination {
+  position: absolute;
+  width: 400px;
+  left: auto;
+  right: 30px;
+  bottom: 20px;
+  text-align: right;
+  transition: all .3s;
+  z-index: 10;
+}
+
+.swiper-p-bullet {
+  display: inline-block;
+  margin: 0 4px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #fff;
+  border-color: hsla(0, 0%, 100%, .3);
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, .4);
+  opacity: 1;
+}
+
+
+.dotactive {
+  opacity: 1;
+  background-color: #fff;
+  border-color: rgba(0, 0, 0, .4);
+}
+
+/* 轮播图结束 */
+
+
+.home-hero-sub {
+  height: 200px;
+  margin-top: 14px;
+  margin-left: -14px;
+  /* 怪东西 */
+
+}
+
+.span4 {
+  width: 234px;
+  float: left;
+  margin-left: 14px;
+  min-height: 1px;
+}
+
+
+.home-channel-list {
+  margin: 0;
+  padding: 3px;
+  list-style-type: none;
+  font-size: 12px;
+  text-align: center;
+  background: #5f5750;
+}
+
+.home-channel-list li {
+  position: relative;
+  float: left;
+  width: 70px;
+  height: 82px;
+  padding: 0 3px;
+
+}
+
+.home-channel-list li a {
+  display: block;
+  padding-top: 18px;
+  color: #fff;
+  opacity: .7;
+  transition: all .2s;
+}
+
+.home-channel-list li a:hover {
+  opacity: 1;
+}
+
+.home-channel-list img {
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin: 0 auto 4px;
+}
+
+
+.span16 {
+  width: 978px;
+  float: left;
+  margin-left: 14px;
+  min-height: 1px;
+}
+
+.home-promo-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+
+
+.home-promo-list li {
+  float: left;
+  width: 316px;
+  height: 170px;
+  margin-left: 15px;
+}
+
+.home-promo-list .first {
+  margin-left: 0;
+}
+
+.home-promo-list a {
+  display: block;
+  height: 170px;
+
+}
+
+.home-promo-list img {
+  display: block;
+  width: 316px;
+  height: 170px;
+}
+
+
+
+
+.qqq {
+  background-color: #f5f5f5;
+  height: 1000px;
+}
