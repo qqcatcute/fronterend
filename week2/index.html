@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List Online 极简设计的网页版 Todo 清单 - 无需登陆 - By Ricocc</title>
+  <meta name="keywords"
+    content="无需登录, 不用账号,online todo, todo, todo list,在线Todo,网页todo,备忘录, Todo清单, 在线Todo清单,无需注册登陆,极简清单,即开即用,便签, 提醒, 日程, 记事本, 记事, 待办事件,online todolist, online 清单,online 待办事项,极简的待办事项">
+  <meta name="description"
+    content="一款优秀的设计简洁的online todolist 网页版本应用,极简的待办事项,Todo清单,无需注册,无需登录, 不用账号,数据安全, 存储在H5浏览器本地缓存, 提供工作和生活辅助! 在线Todo清单,免登录,做最好的 online todo list 清单应用.">
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/normal.css">
+  <script src="js/main2.js"></script>
+</head>
+
+<body>
+  <!-- 背景 -->
+  <div class="bg-pattern">
+  </div>
+  <!-- 头部 -->
+  <div class="nav">
+    <div class="about">
+      <div class="info">
+        <div class="info-ico">
+          关于我
+        </div>
+      </div>
+    </div>
+
+    <div class="language">
+      <a href="#" class="en">En</a>
+      <span>/</span>
+      <a href="#" class="zh active">中</a>
+    </div>
+  </div>
+
+
+  <!-- 主体部分开始 -->
+
+  <div class="todo-wrapper">
+    <div class="todo-app">
+      <!-- 主体头部开始 -->
+      <div class="header container">
+        <div class="todo-iuput">
+          <h1 class="title">
+            <img src="images/todo.svg" alt class="title-1">
+            <div class="ani-vector">
+              <span></span>
+              <span></span>
+            </div>
+            <div class="pendulums">
+              <div class="pendulum">
+                <div class="bar"></div>
+                <div class="motion">
+                  <div class="string"></div>
+                  <div class="weight"></div>
+                </div>
+              </div>
+            </div>
+          </h1>
+          <!-- 主体头部提交部分开始 -->
+          <div class="add-contant-wrapper">
+            <input type="text" placeholder="新增待办事项..." class="add-content">
+
+            <button class="submit-btn">
+              提交
+            </button>
+          </div>
+
+
+          <!-- 主体头部提交部分结束 -->
+        </div>
+      </div>
+      <!-- 主体头部结束 -->
+
+      <!-- 主体部分中间开始 -->
+      <div class="main container">
+        <div class="todo-list-box">
+          <div class="bar-message">
+            <div class="bar-message-text">
+              今日事今日毕，勿将今事待明日!.☕
+            </div>
+          </div>
+
+          <ul class="empty-tips">
+            <li>添加你的第一个待办事项！📝</li>
+            <li>食用方法💡：</li>
+            <li>✔️ 所有提交作支持Enter回车键提交</li>
+            <li>✔️ 拖拽Todo上下移动可排序（仅支持PC）</li>
+            <li>✔️ 双击上面的标语和 Todo 可进行编辑</li>
+            <li>✔️ 右侧的小窗口是快捷操作哦</li>
+            <li>🔒 所有的Todo数据存储在浏览器本地</li>
+            <li>📝 支持下载和导入，导入追加到当前序列</li>
+          </ul>
+          <ul class="todo-list"></ul>
+        </div>
+
+        <!-- side-bar大盒子装上下两个框 side-shortcut是开始框 shortcut-switch是点击后会变 里边两个小盒子一个点击后才出现 镶套的盒子-->
+        <div class="side-bar">
+          <div class="side-shortcut">
+            <div class="shortcut-switch">
+
+              <span class="shortcut-title">开✨</span>
+              <span class="shortcut-name">快捷操作</span>
+            </div>
+          </div>
+          <div class="todo-footer-box">
+            <ul class="todo-func-list filter">
+              <li>
+                <input type="button" value="全部" class="btn-small action-showAll selected">
+              </li>
+            </ul>
+            <ul class="todo-func-list batch"></ul>
+            <ul class="todo-func-list datasave">
+              <li>
+                <input type="button" value="导入(txt/json)" class="btn-small action-import">
+                <input type="file" accept=".txt,.json" style="display: none;">
+              </li>
+            </ul>
+
+          </div>
+
+
+        </div>
+      </div>
+      <!-- 主体部分中间结束 -->
+    </div>
+  </div>
+  <!-- 主体部分结束 -->
+</body>
+
+</html>

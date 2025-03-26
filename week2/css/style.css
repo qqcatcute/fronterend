@@ -1,0 +1,836 @@
+/* :root 选择器：用于定义全局变量，任何地方都可以通过 var(--变量名) 来调用。
+
+CSS 自定义属性（变量）：前缀为 --，可以在整个文档中复用。 */
+:root {
+  --body-bg: #e8f6ff;
+  --border-radius: 12px;
+  --border: 2px solid #33322E;
+  --box-shadow: 4px 4px 0px #33322E;
+  --box-shadow-reverse: -4px 4px 0px #33322E;
+  --padding: 20px 24px;
+  --btn-padding: 12px 24px;
+  --btn-small-padding: 10px 20px;
+  --font: "DM Sans", "PingFang SC", "Lantinghei SC", "Microsoft YaHei", "HanHei SC", "Helvetica Neue", "Open Sans", Arial, "Hiragino Sans GB", STHeiti, "WenQuanYi Micro Hei", SimSun, sans-serif, HYWenHei-GEW !important;
+  --font-color: #33322E;
+  --font-size-base: 16px;
+  --placeholder: rgba(51, 50, 46, 0.535);
+  --font-color-complete: rgba(51, 50, 46, 0.535);
+  --bg-normal: #F9F3E5;
+  --bg-submit: #ffd6e9;
+  --bg-completed: #D0F4F0;
+  --bg-discard: #FFF0EE;
+  --bg-deleted: #ddd;
+  --bg-edit: #fbeef3;
+  --normal: #f5d99e;
+  --completed: #8CD4CB;
+  --deleted: #F6A89E;
+  --black: #33322E;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all .35s;
+  transition: all .35s
+}
+
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  font-family: var(--font);
+  background: #fff;
+  font-size: 16px;
+  background: var(--body-bg);
+  font-size: var(--font-size-base);
+  color: var(--font-color);
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box
+}
+
+html ::-webkit-scrollbar {
+  display: none;
+}
+
+li,
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  border-style: none;
+}
+
+h1 {
+  font-size: 36px;
+  text-align: center
+}
+
+.btn {
+  border: var(--border);
+  border-radius: var(--border-radius);
+  padding: var(--btn-padding);
+  text-align: center;
+  display: block;
+  position: relative
+}
+
+.btn-small {
+  padding: var(--btn-small-padding);
+  font-size: 14px;
+  border: 2px solid var(--black)
+}
+
+/* 由于 .bg-pattern 采用了固定定位和 z-index: -1，
+它会作为页面的背景图层显示，覆盖在 html 背景之上 */
+.bg-pattern {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100vh;
+  background-image: url(../images/download.svg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: repeat;
+  opacity: .08;
+  /* background-color: pink;这句话好像是在测试？ */
+}
+
+/* 头部 内容*/
+.nav {
+  position: fixed;
+  right: 36px;
+  top: 8px;
+  z-index: 999;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+@media (max-width:767px) {
+  .nav {
+    right: 16px;
+    top: 4px;
+  }
+}
+
+.info-ico {
+  position: relative;
+  z-index: 999;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-items: flex-start;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.info-ico:hover {
+  font-weight: 700;
+}
+
+.language {
+  margin-left: 4px;
+  color: #606060;
+  font-size: 12px;
+  z-index: 999;
+}
+
+.language a {
+  font-size: 14px;
+  color: #606060;
+  text-decoration: none;
+  padding: 4px;
+}
+
+/* 这里应该是用js选择器但是这个页面感觉切换了也差不多 跟轮播图小圆点应该是同个道理 先默认有个active的类 然后点击后移除 给其他的选择器添加active */
+.language a.active {
+  font-size: 16px;
+  color: #33322e;
+  font-weight: 600;
+}
+
+/* 主体部分开始 */
+
+/* 主体头部 */
+.todo-wrapper {
+  position: relative;
+  top: 50px;
+}
+
+.todo-app {
+  margin: 0 auto;
+}
+
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.header {
+  margin: 0 auto 24px;
+}
+
+.title {
+  position: relative;
+  font-weight: 800;
+  font-size: 44px;
+  margin: 0 auto 12px;
+  width: 200px;
+}
+
+.title img {
+  width: auto;
+  height: 52px;
+}
+
+.ani-vector {
+  position: absolute;
+  left: -60px;
+  top: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (max-width:768px) {
+  .ani-vector {
+    top: 24px;
+  }
+}
+
+@keyframes zooming {
+  0% {
+    transform: scale(1) rotateZ(45deg)
+  }
+
+  20% {
+    transform: scale(1) rotateZ(45deg)
+  }
+
+  30% {
+    transform: scale(1) rotateZ(135deg)
+  }
+
+  70% {
+    transform: scale(1) rotateZ(135deg)
+  }
+
+  80% {
+    transform: scale(1) rotateZ(45deg)
+  }
+
+  100% {
+    transform: scale(1) rotateZ(45deg)
+  }
+}
+
+.zooming {
+  animation: zooming 1.5s ease-in-out infinite;
+  /* 慢快慢 无限重复 */
+}
+
+/* 可以调用一个类 也可以直接用 */
+.ani-vector span {
+  margin: 0 7px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--black);
+  background-color: var(--bg-submit);
+  animation: zooming 8s ease-in-out infinite;
+}
+
+.ani-vector span:nth-child(2) {
+  -webkit-animation-delay: 2s;
+  animation-delay: 2s;
+}
+
+.pendulums {
+  position: absolute;
+  width: 50px;
+  height: 72px;
+  right: -56px;
+  bottom: -2px;
+  perspective: 640px;
+  /* 3d深度效果 */
+}
+
+.pendulum {
+  position: absolute;
+  width: 50px;
+  height: 70px;
+  right: 44%;
+  bottom: 0;
+  left: 50%;
+  transform: translateZ(-300px) translateX(-50%);
+}
+
+.pendulum .bar {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -5px;
+  display: block;
+  width: 26px;
+  height: 30px;
+  background: #d0f4f0;
+  border: 3px solid #33322e;
+  border-radius: 15px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
+.pendulum .motion {
+  position: absolute;
+  height: 90px;
+  width: 50px;
+  transform-origin: 50% 10px;
+  /* 变化基准点 */
+  animation: swing 1.8s infinite ease-in-out;
+}
+
+@keyframes swing {
+  0% {
+    transform: rotate(-45deg)
+  }
+
+  50% {
+    transform: rotate(45deg)
+  }
+
+  100% {
+    transform: rotate(-45deg)
+  }
+}
+
+.pendulum .string {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 72px;
+  background: var(--black);
+}
+
+.pendulum .weight {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 14px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #f8d966;
+  border: 3px solid #33322e;
+}
+
+.pendulum:after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background-color: var(--bg-submit);
+  position: absolute;
+  top: 2px;
+  left: 18px;
+  /* 跟原本数据不一样 微调奇奇怪怪 */
+  margin: 0 auto;
+  transform: rotate(45deg);
+  border: 3px solid var(--black);
+}
+
+/* 主体头部结束 */
+
+/* 主体提交部分开始 */
+.add-contant-wrapper {
+  position: relative;
+}
+
+.add-content {
+  width: 100%;
+  padding: 0;
+  font-size: 18px;
+  cursor: text;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  height: 64px;
+  line-height: 64px;
+  /* 这个是首行缩进的意思 */
+  text-indent: 12px;
+  padding-right: 118px;
+  box-shadow: var(--box-shadow);
+}
+
+.add-content:focus {
+
+  box-shadow: none;
+}
+
+.add-content:hover {
+
+  box-shadow: none
+}
+
+@media only screen and (max-width:768px) {
+  .add-contant-wrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 95%;
+    margin: 0 auto;
+    z-index: 99;
+    padding: 40px 0 20px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .submit-btn {
+    margin: 40px 0;
+  }
+}
+
+/* 这里真的好奇怪 为什么响应式后会改变位置呢？改top也不行 */
+
+.submit-btn {
+  box-sizing: border-box;
+  height: 60px;
+  line-height: 60px;
+  width: 96px;
+  padding: 0;
+  text-align: center;
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  border: 0;
+  border-left: var(--border);
+  border-radius: 10px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  cursor: pointer;
+  background: var(--bg-submit);
+  transition: all .25s;
+  font-size: 18px;
+}
+
+/* 主体提交部分结束 */
+
+/* 主体部分中间开始  */
+.main {
+  position: relative;
+  max-width: 700px;
+}
+
+@media only screen and (max-width:992px) {
+  .container {
+    max-width: 600px;
+  }
+}
+
+
+@media only screen and (max-width:768px) {
+  .container {
+    max-width: 95%
+  }
+}
+
+
+.todo-list-box {
+  position: relative;
+  background: #fff;
+  box-shadow: var(--box-shadow);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  margin: 0;
+  padding-top: 0;
+  transition: all .5s ease;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.bar-message {
+
+  border-bottom: var(--border);
+  width: 100%;
+  height: 44px;
+  line-height: 44px;
+
+}
+
+.bar-message:hover {
+  background-color: #F9F3E5;
+}
+
+.bar-message-text {
+  display: inline;
+  font-weight: 600;
+  padding: 0;
+  padding-left: 12px;
+  padding-right: 12px;
+  width: 100%;
+  text-align: left;
+  line-height: 44px;
+  cursor: pointer;
+}
+
+@media only screen and (max-width:768px) {
+  .bar-message .bar-message-text {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.empty-tips {
+  text-align: left;
+  max-width: 480px;
+  width: 90%;
+  margin: 20px auto;
+  position: absolute;
+  top: 15%;
+  left: 8%;
+  font-size: 16px;
+  color: #606060;
+  line-height: 1.6;
+  letter-spacing: .24px;
+  /* 字的间距 */
+}
+
+@media only screen and (max-width:768px) {
+  .empty-tips {
+    margin-top: 0;
+    left: 6%;
+    font-size: 17px;
+  }
+}
+
+.empty-tips li {
+  margin: 2px 0 8px;
+  list-style: none;
+}
+
+.todo-list {
+  padding: 32px 36px 36px;
+  min-height: 381px;
+
+}
+
+
+@media only screen and (max-width:768px) {
+  .todo-list {
+    min-height: 480px;
+    padding: 20px 16px 24px;
+  }
+}
+
+.side-bar {
+  position: absolute;
+  left: 104%;
+  /* 奇怪这里怎么用calc不行？ */
+  top: 0;
+  border: var(--border);
+  background: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  text-align: center;
+  transition: all .3s;
+  overflow: hidden;
+  z-index: 999;
+
+}
+
+.side-bar:hover {
+
+  box-shadow: none
+}
+
+@media only screen and (max-width:768px) {
+  .side-bar {
+    position: fixed !important;
+    top: unset;
+    bottom: 108px;
+    left: unset;
+    right: -2px;
+    box-shadow: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+.side-shortcut {
+  display: block;
+  width: 100%;
+}
+
+.shortcut-switch {
+  overflow: hidden;
+  cursor: pointer;
+  width: 100%;
+}
+
+.shortcut-switch span {
+  padding: 10px 14px;
+  display: block;
+}
+
+
+.shortcut-title {
+  background: var(--bg-completed);
+  border-bottom: var(--border);
+  font-weight: 700;
+}
+
+
+.fold .shortcut-title {
+  background: var(--deleted);
+}
+
+.fold span.shortcut-name {
+  display: block;
+  writing-mode: vertical-lr;
+}
+
+.side-shortcut .shortcut-name {
+  display: none;
+}
+
+.todo-footer-box {
+  position: relative;
+  height: 100%;
+}
+
+.todo-func-list.filter li:first-child input {
+  border: 0;
+}
+
+
+.action-showAll.select {
+  background: var(--bg-submit);
+}
+
+.todo-func-list li input {
+  transition: all .25s;
+  width: 100%;
+  border-radius: 0;
+  border: 0;
+  border-top: 1px solid var(--black);
+}
+
+.btn-small {
+  padding: var(--btn-small-padding);
+  font-size: 14px;
+}
+
+
+/* 添加出现新的li的样式 预设 */
+.todo-content {
+  padding: var(--padding);
+  background: var(--bg-normal);
+  border-radius: var(--border-radius);
+  width: 100%;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+  padding-left: 56px;
+  padding-right: 56px;
+  cursor: pointer;
+  min-height: 60px;
+}
+
+.todo-btn {
+  position: absolute;
+  background: 0 0;
+  display: block;
+  cursor: pointer;
+  border: var(--border);
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  background: #fff;
+}
+
+.btn-finish {
+  left: 14px;
+  top: 16px;
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+}
+
+.btn-finish:hover {
+  background: var(--bg-completed);
+  box-shadow: var(--box-shadow-reverse);
+  transform: translate(2px, -2px);
+}
+
+.btn-delete {
+  background-color: #fff;
+  right: 12px;
+  top: 16px;
+  height: 30px;
+  border-radius: var(--border-radius);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-delete:hover {
+  background: var(--deleted);
+}
+
+.todo-btn:hover {
+  box-shadow: var(--box-shadow);
+  transform: translate(-2px, -2px);
+}
+
+.btn-delete img {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.todo-list li:last-child {
+  margin-bottom: 0;
+}
+
+.todo-list li {
+  position: relative;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  width: 100%;
+  transition: all .5s ease;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.todo-list li:hover {
+  box-shadow: none;
+}
+
+.completed {
+  background: var(--bg-completed);
+  color: var(--font-color-complete);
+  text-decoration: line-through;
+}
+
+.btn-allFinish {
+  display: inline-block;
+  background: var(--completed);
+  border: 0;
+  border-radius: 0;
+  border-top-left-radius: var(--border-radius);
+  border-right: var(--border);
+  margin: 0;
+  min-width: 24%;
+}
+
+
+.btn-unfinish {
+  left: 14px;
+  top: 16px;
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+  background: var(--bg-completed);
+}
+
+.btn-unfinish img {
+  position: relative;
+  left: 4px;
+  top: 2px;
+  width: 26px;
+  height: auto;
+}
+
+
+.action-deleted.selected,
+.action-deleted:hover,
+.clear-all:hover,
+.completed-clear:hover {
+  background: var(--deleted);
+}
+
+.action-completed.selected,
+.action-completed:hover,
+.completed-all:hover {
+  background: var(--bg-completed);
+}
+
+.action-download.selected,
+.action-download:hover {
+  background: var(--normal);
+}
+
+.action-import.selected,
+.action-import:hover {
+  background: var(--normal);
+}
+
+.btn-restore {
+  background: #fff;
+  right: 12px;
+  top: 16px;
+  height: 30px;
+  width: 30px;
+  border-radius: var(--border-radius);
+  border: var(--border);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-restore:hover {
+  box-shadow: var(--box-shadow);
+  transform: translate(-2px, -2px);
+}
+
+.action-progress.selected,
+.action-progress:hover {
+  background: var(--bg-edit);
+}
+
+
+.action-showAll.selected,
+.action-showAll:hover {
+  background: var(--bg-submit);
+}
+
+.edit-input {
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+  display: block;
+  line-height: 1.5;
+  min-height: 60px;
+  overflow-wrap: break-word;
+  padding-left: 56px;
+  padding-right: 56px;
+  transition: 0.25s;
+  border-width: 0px;
+  border-style: initial;
+  border-color: initial;
+  border-image: initial;
+  background: var(--bg-submit);
+}
+
+
+
+
+
+
+
+/* 主体部分中间结束  */
+
+/* 主体部分结束*/
