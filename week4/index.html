@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI模型工作台</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/normal.js"></script>
+
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>AI模型工作台</h1>
+    </header>
+
+    <main>
+      <!-- 左侧模型库 -->
+      <div class="model-library">
+        <h2>模型库</h2>
+        <div class="model-list" id="modelList">
+          <!-- 模型列表JS动态生成 -->
+        </div>
+        <div class="model-actions">
+          <button id="addModelBtn">添加新模型</button>
+        </div>
+
+        <!-- 添加模型的表单 -->
+        <div class="model-form" id="modelForm">
+          <h3>添加新模型</h3>
+          <form id="newModelForm">
+            <div class="form-group">
+              <label for="modelName">模型名称:</label>
+              <input type="text" id="modelName" required>
+            </div>
+            <div class="form-group">
+              <label for="modelUrl">模型URL:</label>
+              <input type="text" id="modelUrl" required>
+            </div>
+            <div class="form-group">
+              <label for="modelDesc">模型简介:</label>
+              <textarea id="modelDesc" required></textarea>
+            </div>
+            <div class="form-buttons">
+              <button type="submit">保存</button>
+              <button type="button" id="cancelAddModel">取消</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- 模型详情 -->
+        <div class="model-details" id="modelDetails">
+          <h3 id="detailModelName"></h3>
+          <p><strong>URL:</strong> <span id="detailModelUrl"></span></p>
+          <p><strong>简介:</strong> <span id="detailModelDesc"></span></p>
+          <div class="detail-buttons">
+            <button id="closeDetail">关闭</button>
+            <button id="deleteModel">删除模型</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右侧工作台 -->
+      <div class="workbench">
+        <h2>工作台</h2>
+        <div class="workbench-actions">
+          <button id="addLayerBtn">添加新层级</button>
+          <button id="submitWorkbench">提交</button>
+        </div>
+        <div class="layers-container" id="layersContainer">
+          <!-- 层级将通过JS动态生成 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 用户输入表单 -->
+    <div class="user-input-form" id="userInputForm">
+      <h2>输入问题</h2>
+      <form id="questionForm">
+        <div class="form-group">
+          <label for="userQuestion">您的问题:</label>
+          <textarea id="userQuestion" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="userImage">上传图片(可选):</label>
+          <input type="file" id="userImage" accept="image/*">
+        </div>
+        <div class="form-buttons">
+          <button type="submit">提交问题</button>
+          <button type="button" id="cancelQuestion">取消</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- 遮罩层 -->
+    <div class="overlay" id="overlay"></div>
+  </div>
+
+  <!-- 模型属性表单 -->
+  <div class="model-properties" id="modelProperties">
+    <h3>设置模型属性</h3>
+    <form id="propertiesForm">
+      <div class="form-group">
+        <label for="modelWeight">权重:</label>
+        <input type="number" id="modelWeight" min="1" value="1" required>
+      </div>
+      <div class="form-group">
+        <label for="modelPrompt">提示词:</label>
+        <textarea id="modelPrompt"></textarea>
+      </div>
+      <div class="form-buttons">
+        <button type="submit">保存</button>
+        <button type="button" id="cancelProperties">取消</button>
+      </div>
+    </form>
+  </div>
+
+</body>
+
+</html>
