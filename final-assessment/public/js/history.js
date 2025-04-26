@@ -1,7 +1,6 @@
 /**
  * history.js
  * 处理历史记录页面的数据加载、过滤和分页功能
- * 该文件应放在 public/js/ 目录下
  */
 
 document.addEventListener('DOMContentLoaded', function () {
