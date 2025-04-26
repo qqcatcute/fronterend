@@ -1,7 +1,6 @@
 /**
  * header-notifications.js
  * 处理所有页面的顶部导航栏通知图标和下拉菜单功能
- * 该文件应放在 public/js/ 目录下
  */
 
 document.addEventListener('DOMContentLoaded', function () {
