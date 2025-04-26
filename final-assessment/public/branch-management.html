@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>分支管理 - QG团队协作与版本管理平台</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/tasks.css">
+  <link rel="stylesheet" href="css/notifications.css">
+  <link rel="stylesheet" href="css/version-control.css">
+  <link rel="stylesheet" href="css/updated-version-control.css">
+  <link rel="shortcut icon" href="images/qg.png" type="image/x-icon">
+</head>
+
+<body>
+  <div class="app-container">
+    <!-- 头部开始 -->
+    <header class="app-header">
+      <div class="logo-container">
+        <img src="images/qg.png" alt="QG Logo" class="logo">
+        <h1>QG团队协作平台</h1>
+      </div>
+      <div class="header-right">
+        <div class="search-bar">
+          <input type="text" placeholder="搜索...">
+        </div>
+        <div class="notification-icon">
+          <span class="notification-badge" id="notificationBadge">0</span>
+          <i class="icon-bell"></i>
+        </div>
+        <div class="user-profile">
+          <img src="images/default-avatar.png" alt="User Avatar" onerror="this.src='images/default-avatar.png'">
+          <span class="username">用户</span>
+        </div>
+      </div>
+    </header>
+    <!-- 头部结束 -->
+
+    <!-- 主体开始 -->
+    <div class="app-content">
+      <!-- 旁栏 -->
+      <aside class="app-sidebar">
+        <nav class="sidebar-nav">
+          <ul>
+            <li><a href="dashboard.html"><i class="icon-dashboard"></i> 仪表盘</a></li>
+            <li><a href="teams.html"><i class="icon-team"></i> 团队管理</a></li>
+            <li class="active"><a href="tasks.html"><i class="icon-task"></i> 任务管理</a></li>
+            <li><a href="history.html"><i class="icon-history"></i> 历史记录</a></li>
+            <li><a href="settings.html"><i class="icon-settings"></i> 设置</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <div class="dashboard-header">
+          <h2><a href="task-details.html?id=" class="back-link" id="backToTask"><i class="icon-back"></i> 返回任务</a> 分支管理
+          </h2>
+          <div class="quick-actions">
+            <button class="btn btn-primary" id="createBranchBtn">创建新分支</button>
+          </div>
+        </div>
+
+        <!-- 分支列表 -->
+        <section class="dashboard-section">
+          <h3>任务分支</h3>
+          <div class="branches-container">
+            <div class="branches-list" id="branchesList">
+              <div class="team-loading">加载中...</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 活动分支信息 -->
+        <section class="dashboard-section">
+          <h3>活动分支信息</h3>
+          <div class="active-branch-info" id="activeBranchInfo">
+            <div class="team-loading">加载中...</div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- 创建分支模态框 -->
+  <div id="createBranchModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h3>创建新分支</h3>
+      <form id="createBranchForm">
+        <div class="form-group">
+          <label for="branchName">分支名称</label>
+          <input type="text" id="branchName" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="branchDescription">描述</label>
+          <textarea id="branchDescription" name="description" rows="3"></textarea>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="isDefaultBranch" name="isDefault">
+          <label for="isDefaultBranch">设为默认分支</label>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary cancel-modal">取消</button>
+          <button type="submit" class="btn btn-primary">创建分支</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/session.js"></script>
+  <script src="js/header-notifications.js"></script>
+  <script src="js/branch-management.js"></script>
+</body>
+
+</html>

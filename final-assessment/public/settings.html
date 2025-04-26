@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>设置 - QG团队协作与版本管理平台</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="shortcut icon" href="images/qg.png" type="image/x-icon">
+  <link rel="stylesheet" href="css/notifications.css">
+  <style>
+    .settings-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .settings-card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .settings-card h3 {
+      margin-top: 0;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    .avatar-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .current-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-right: 20px;
+      object-fit: cover;
+    }
+
+    .avatar-upload {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .avatar-upload input[type="file"] {
+      margin-bottom: 10px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .form-actions {
+      margin-top: 20px;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .btn-primary {
+      background-color: #4a6ee0;
+      color: white;
+    }
+
+    .btn-secondary {
+      background-color: #e0e0e0;
+      color: #333;
+      margin-right: 10px;
+    }
+
+    .message {
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 4px;
+    }
+
+    .message.success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+
+    .message.error {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app-container">
+    <!-- 头部开始 -->
+    <header class="app-header">
+      <div class="logo-container">
+        <img src="images/qg.png" alt="QG Logo" class="logo">
+        <h1>QG团队协作平台</h1>
+      </div>
+      <div class="header-right">
+        <div class="search-bar">
+          <input type="text" placeholder="搜索...">
+        </div>
+        <div class="notification-icon">
+          <span class="notification-badge" id="notificationBadge">0</span>
+          <i class="icon-bell"></i>
+        </div>
+        <div class="user-profile">
+          <img src="images/img.jpg" alt="User Avatar">
+          <span class="username">用户名</span>
+        </div>
+      </div>
+    </header>
+    <!-- 头部结束 -->
+
+    <!-- 主体开始 -->
+    <div class="app-content">
+      <!-- 旁栏 -->
+      <aside class="app-sidebar">
+        <nav class="sidebar-nav">
+          <ul>
+            <li><a href="dashboard.html"><i class="icon-dashboard"></i> 仪表盘</a></li>
+            <li><a href="teams.html"><i class="icon-team"></i> 团队管理</a></li>
+            <li><a href="tasks.html"><i class="icon-task"></i> 任务管理</a></li>
+            <li><a href="history.html"><i class="icon-history"></i> 历史记录</a></li>
+            <li><a href="notifications.html"><i class="icon-bell"></i> 通知中心</a></li>
+            <li class="active"><a href="settings.html"><i class="icon-settings"></i> 设置</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- 主体内容 -->
+      <main class="main-content">
+        <div class="dashboard-header">
+          <h2>个人设置</h2>
+        </div>
+
+        <div class="settings-container">
+          <!-- 头像设置 -->
+          <div class="settings-card">
+            <h3>头像设置</h3>
+            <div class="avatar-container">
+              <img src="images/img.jpg" alt="当前头像" class="current-avatar" id="currentAvatar">
+              <div class="avatar-upload">
+                <form id="avatarForm">
+                  <input type="file" id="avatar" name="avatar" accept="image/*">
+                  <button type="submit" class="btn btn-primary">上传头像</button>
+                </form>
+                <div id="avatarMessage"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 个人信息设置 -->
+          <div class="settings-card">
+            <h3>个人信息</h3>
+            <form id="profileForm">
+              <div class="form-group">
+                <label for="username">用户名</label>
+                <input type="text" id="username" name="username" disabled>
+              </div>
+              <div class="form-group">
+                <label for="email">邮箱</label>
+                <input type="email" id="email" name="email" disabled>
+              </div>
+              <div class="form-group">
+                <label for="phone">手机号</label>
+                <input type="tel" id="phone" name="phone" disabled>
+              </div>
+              <!-- 其他个人信息字段 -->
+            </form>
+          </div>
+
+          <!-- 密码设置 -->
+          <div class="settings-card">
+            <h3>修改密码</h3>
+            <form id="passwordForm">
+              <div class="form-group">
+                <label for="currentPassword">当前密码</label>
+                <input type="password" id="currentPassword" name="currentPassword" required>
+              </div>
+              <div class="form-group">
+                <label for="newPassword">新密码</label>
+                <input type="password" id="newPassword" name="newPassword" required>
+              </div>
+              <div class="form-group">
+                <label for="confirmPassword">确认新密码</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">修改密码</button>
+              </div>
+              <div id="passwordMessage"></div>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+    <!-- 主体结束 -->
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/session.js"></script>
+  <script src="js/header-notifications.js"></script>
+ <script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 获取用户信息
+  function loadUserInfo() {
+    const userData = JSON.parse(localStorage.getItem('user'));
+    if (!userData) {
+      window.location.href = 'index.html';
+      return;
+    }
+
+    // 显示用户信息
+    document.getElementById('username').value = userData.username || '';
+    document.getElementById('email').value = userData.email || '';
+    document.getElementById('phone').value = userData.phone || '';
+
+    // 显示用户头像，确保使用完整URL
+    const currentAvatar = document.getElementById('currentAvatar');
+    if (userData.avatar) {
+      // 检查是否为完整URL
+      if (userData.avatar.startsWith('http')) {
+        currentAvatar.src = userData.avatar;
+      } else {
+        // 修正的代码 - 检查和处理前导斜杠
+        if (!userData.avatar.startsWith('/')) {
+          currentAvatar.src = API_BASE_URL + '/' + userData.avatar;
+        } else {
+          currentAvatar.src = API_BASE_URL + userData.avatar;
+        }
+      }
+    }
+  }
+
+  // 辅助函数：显示消息
+  function showMessage(elementId, message, type = 'error') {
+    const messageElement = document.getElementById(elementId);
+    messageElement.textContent = message;
+    messageElement.className = `message ${type}`;
+    // 5秒后自动清除消息
+    setTimeout(() => {
+      messageElement.textContent = '';
+      messageElement.className = '';
+    }, 5000);
+  }
+
+  // 上传头像表单处理
+  const avatarForm = document.getElementById('avatarForm');
+  if (avatarForm) {
+    avatarForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const token = localStorage.getItem('token');
+      if (!token) {
+        window.location.href = 'index.html';
+        return;
+      }
+
+      const fileInput = document.getElementById('avatar');
+      if (!fileInput.files[0]) {
+        showMessage('avatarMessage', '请选择一个文件', 'error');
+        return;
+      }
+
+      // 创建FormData对象
+      const formData = new FormData();
+      formData.append('avatar', fileInput.files[0]);
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/users/avatar`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          },
+          body: formData
+        });
+
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data.message || '上传头像失败');
+        }
+
+        // 构建完整的头像URL - 修正这里的拼接
+        const avatarPath = data.data.avatar;
+        const fullAvatarUrl = API_BASE_URL + (avatarPath.startsWith('/') ? '' : '/') + avatarPath;
+
+        // 上传成功，更新settings页面的头像显示
+        document.getElementById('currentAvatar').src = fullAvatarUrl;
+
+        // 更新本地存储中的用户信息
+        const userData = JSON.parse(localStorage.getItem('user'));
+        userData.avatar = data.data.avatar; // 保存相对路径到localStorage
+        localStorage.setItem('user', JSON.stringify(userData));
+
+        // 更新当前页面所有头像显示
+        const avatarElements = document.querySelectorAll('.user-profile img');
+        avatarElements.forEach(element => {
+          element.src = fullAvatarUrl;
+        });
+
+        showMessage('avatarMessage', '头像上传成功', 'success');
+      } catch (error) {
+        console.error('上传头像失败:', error);
+        showMessage('avatarMessage', error.message || '上传头像失败，请稍后再试', 'error');
+      }
+    });
+  }
+
+  // 修改密码表单处理
+  const passwordForm = document.getElementById('passwordForm');
+  if (passwordForm) {
+    passwordForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const token = localStorage.getItem('token');
+      if (!token) {
+        window.location.href = 'index.html';
+        return;
+      }
+
+      const currentPassword = document.getElementById('currentPassword').value;
+      const newPassword = document.getElementById('newPassword').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      // 验证密码
+      if (!currentPassword || !newPassword || !confirmPassword) {
+        showMessage('passwordMessage', '所有密码字段都必须填写', 'error');
+        return;
+      }
+
+      if (newPassword !== confirmPassword) {
+        showMessage('passwordMessage', '新密码和确认密码不匹配', 'error');
+        return;
+      }
+
+      if (newPassword.length < 6) {
+        showMessage('passwordMessage', '新密码长度至少为6个字符', 'error');
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/users/password`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            currentPassword,
+            newPassword
+          })
+        });
+
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data.message || '修改密码失败');
+        }
+
+        // 清空表单
+        passwordForm.reset();
+        showMessage('passwordMessage', '密码修改成功', 'success');
+      } catch (error) {
+        console.error('修改密码失败:', error);
+        showMessage('passwordMessage', error.message || '修改密码失败，请稍后再试', 'error');
+      }
+    });
+  }
+
+  // 加载用户信息
+  loadUserInfo();
+});
+</script>
+</body>
+
+</html>

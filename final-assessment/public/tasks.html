@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>任务管理 - QG团队协作与版本管理平台</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/tasks.css">
+  <link rel="shortcut icon" href="images/qg.png" type="image/x-icon">
+  <link rel="stylesheet" href="css/notifications.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <!-- 头部开始 -->
+    <header class="app-header">
+      <div class="logo-container">
+        <img src="images/qg.png" alt="QG Logo" class="logo">
+        <h1>QG团队协作平台</h1>
+      </div>
+      <div class="header-right">
+        <div class="search-bar">
+          <input type="text" placeholder="搜索...">
+        </div>
+        <div class="notification-icon">
+          <span class="notification-badge" id="notificationBadge">0</span>
+          <i class="icon-bell"></i>
+        </div>
+        <div class="user-profile">
+          <img src="images/img.jpg" alt="User Avatar">
+          <span class="username">用户</span>
+        </div>
+      </div>
+    </header>
+    <!-- 头部结束 -->
+
+    <!-- 主体开始 -->
+    <div class="app-content">
+      <!-- 旁栏 -->
+      <aside class="app-sidebar">
+        <nav class="sidebar-nav">
+          <ul>
+            <li><a href="dashboard.html"><i class="icon-dashboard"></i> 仪表盘</a></li>
+            <li><a href="teams.html"><i class="icon-team"></i> 团队管理</a></li>
+            <li class="active"><a href="tasks.html"><i class="icon-task"></i> 任务管理</a></li>
+            <li><a href="history.html"><i class="icon-history"></i> 历史记录</a></li>
+            <li><a href="notifications.html"><i class="icon-bell"></i> 通知中心</a></li>
+            <li><a href="settings.html"><i class="icon-settings"></i> 设置</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- 主体内容 -->
+      <main class="main-content">
+        <div class="dashboard-header">
+          <h2>任务管理</h2>
+          <div class="quick-actions">
+            <button class="btn btn-primary" id="createTaskBtn">创建任务</button>
+          </div>
+        </div>
+
+        <!-- 任务过滤器 -->
+        <div class="task-filters">
+          <div class="filter-group">
+            <label for="taskView">查看:</label>
+            <select id="taskView">
+              <option value="all">所有任务</option>
+              <option value="assigned">分配给我的</option>
+              <option value="created">我创建的</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="taskStatus">状态:</label>
+            <select id="taskStatus">
+              <option value="all">全部</option>
+              <option value="pending">待处理</option>
+              <option value="in_progress">进行中</option>
+              <option value="completed">已完成</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="taskPriority">优先级:</label>
+            <select id="taskPriority">
+              <option value="all">全部</option>
+              <option value="high">高</option>
+              <option value="medium">中</option>
+              <option value="low">低</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 任务列表 -->
+        <section class="dashboard-section">
+          <div class="tasks-list" id="tasksList">
+            <div class="team-loading">加载中...</div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <!-- 主体结束 -->
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/session.js"></script>
+  <script src="js/header-notifications.js"></script>
+  <script src="js/tasks.js"></script>
+</body>
+
+</html>

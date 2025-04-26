@@ -1,0 +1,284 @@
+/* notifications.css */
+
+/* 通知过滤器 */
+.notification-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+}
+
+.filter-group label {
+  margin-right: 8px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.filter-group select {
+  padding: 6px 10px;
+  border: 1px solid #e1e4e8;
+  border-radius: 4px;
+  font-size: 14px;
+  min-width: 120px;
+}
+
+/* 通知列表 */
+.notifications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.notification-item {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+
+.notification-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+}
+
+.notification-item.unread {
+  border-left: 4px solid var(--primary-color);
+}
+
+.notification-item.unread::before {
+  content: "";
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+}
+
+.notification-icon-container {
+  margin-right: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: #f3f4f6;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.notification-type-icon {
+  font-size: 18px;
+  color: var(--primary-color);
+}
+
+.notification-content {
+  flex: 1;
+}
+
+.notification-message {
+  margin: 0 0 8px 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #2d333a;
+  padding-right: 15px;
+}
+
+.notification-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notification-time {
+  font-size: 13px;
+  color: #6c757d;
+}
+
+.notification-link {
+  font-size: 13px;
+  color: var(--primary-color);
+  text-decoration: none;
+  margin-right: 15px;
+}
+
+.notification-link:hover {
+  text-decoration: underline;
+}
+
+.notification-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.notification-action-btn {
+  background: none;
+  border: none;
+  color: #6c757d;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.notification-action-btn:hover {
+  background-color: #f3f4f6;
+  color: var(--primary-color);
+}
+
+.notification-action-btn.delete-btn:hover {
+  color: var(--danger-color);
+}
+
+/* 通知类型图标 */
+.icon-task-assigned::before {
+  content: "📋";
+}
+
+.icon-task-comment::before {
+  content: "💬";
+}
+
+.icon-team-invite::before {
+  content: "👥";
+}
+
+.icon-team-remove::before {
+  content: "🚫";
+}
+
+/* 空状态 */
+.empty-notifications {
+  padding: 40px 20px;
+  text-align: center;
+  color: #6c757d;
+  background-color: #f9f9fb;
+  border-radius: 8px;
+}
+
+.empty-notifications .icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+  color: #d1d5db;
+}
+
+.empty-notifications h3 {
+  margin: 0 0 10px 0;
+  font-weight: 500;
+  color: #4a5568;
+}
+
+.empty-notifications p {
+  max-width: 400px;
+  margin: 0 auto;
+  color: #6c757d;
+}
+
+/* 头部通知图标激活状态 */
+.notification-icon.active {
+  color: var(--primary-color);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .notification-filters {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .notification-item {
+    padding: 12px;
+  }
+
+  .notification-icon-container {
+    width: 32px;
+    height: 32px;
+    margin-right: 12px;
+  }
+
+  .notification-type-icon {
+    font-size: 16px;
+  }
+
+  .notification-meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .notification-time {
+    margin-bottom: 5px;
+  }
+}
+
+/* 为新增的通知类型添加图标样式 */
+.notification-type-icon.icon-task-link:before {
+  content: '\e910';
+  /* 可以使用链接图标或自定义字体图标 */
+  color: #4a6fb3;
+  /* 依赖关系相关通知使用蓝色 */
+}
+
+.notification-type-icon.icon-task-status:before {
+  content: '\e911';
+  /* 可以使用状态变更图标或自定义字体图标 */
+  color: #6a9b41;
+  /* 状态变更相关通知使用绿色 */
+}
+
+/* 为依赖关系相关通知添加独特的样式 */
+.notification-item.unread .notification-type-icon.icon-task-link,
+.notification-item.unread .notification-type-icon.icon-task-status {
+  background-color: rgba(74, 111, 179, 0.1);
+  /* 轻微的蓝色背景 */
+}
+
+/* 状态变更通知的样式 */
+.notification-item:has(.icon-task-status) {
+  border-left: 3px solid #6a9b41;
+}
+
+/* 依赖关系通知的样式 */
+.notification-item:has(.icon-task-link) {
+  border-left: 3px solid #4a6fb3;
+}
+
+/* 通知过滤器中新增类型的样式 */
+#notificationType option[value="task_dependency"],
+#notificationType option[value="task_dependent"],
+#notificationType option[value="task_status"] {
+  font-weight: 500;
+}
+
+/* 高亮显示重要通知 */
+.notification-item.unread .notification-message:contains("已标记为完成") {
+  color: #2e7d32;
+  font-weight: 500;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .notification-filters {
+    flex-direction: column;
+  }
+
+  .filter-group {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}

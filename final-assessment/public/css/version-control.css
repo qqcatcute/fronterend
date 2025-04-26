@@ -1,0 +1,145 @@
+/* 版本控制相关样式 */
+.version-control-container {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.version-control-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.branch-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.branch-selector select {
+  padding: 6px 10px;
+  border: 1px solid #e1e4e8;
+  border-radius: 4px;
+  min-width: 150px;
+}
+
+.task-content-editor {
+  margin-bottom: 20px;
+}
+
+.task-content-editor textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  font-family: monospace;
+  resize: vertical;
+}
+
+.version-history-container {
+  border-top: 1px solid #e1e4e8;
+  padding-top: 20px;
+}
+
+.commits-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.commit-item {
+  padding: 12px;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+}
+
+.commit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 5px;
+}
+
+.commit-title {
+  font-weight: 500;
+  margin: 0;
+}
+
+.commit-meta {
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.commit-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+/* 冲突解决模态框样式 */
+.conflict-modal-content {
+  width: 80%;
+  max-width: 800px;
+}
+
+.conflict-editor {
+  margin: 15px 0;
+}
+
+.conflict-editor textarea {
+  width: 100%;
+  font-family: monospace;
+  font-size: 14px;
+  padding: 10px;
+  border: 1px solid #e1e4e8;
+  border-radius: 4px;
+}
+
+/* 合并冲突标记样式 */
+.conflict-marker {
+  background-color: #ffe3e3;
+  padding: 2px 0;
+}
+
+/* Add to version-control.css */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black with opacity */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.close-modal {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+  color: black;
+  text-decoration: none;
+}

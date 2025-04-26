@@ -1,0 +1,297 @@
+/* 分支管理页面样式 */
+.branches-container {
+  margin-top: 20px;
+}
+
+.branches-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.branch-item {
+  background-color: white;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.branch-item.default-branch {
+  border-left: 4px solid #28a745;
+}
+
+.branch-info {
+  flex: 1;
+}
+
+.branch-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.branch-title h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.branch-description {
+  margin: 5px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.branch-meta {
+  font-size: 12px;
+  color: #999;
+}
+
+.branch-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  background-color: #28a745;
+  color: white;
+}
+
+/* 提交历史页面样式 */
+.commits-container {
+  margin-top: 20px;
+}
+
+.commit-avatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.commit-content-preview {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+}
+
+.commit-content-preview pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: monospace;
+  margin: 0;
+}
+
+.commit-details {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.commit-detail-header {
+  margin-bottom: 15px;
+}
+
+.commit-detail-header h4 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+}
+
+/* 合并请求页面样式 */
+.merge-requests-container {
+  margin-top: 20px;
+}
+
+.merge-requests-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.merge-request-item {
+  background-color: white;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.merge-request-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.merge-request-header h4 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.merge-request-status {
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.merge-request-status.pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.merge-request-status.resolved {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.merge-request-meta {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.merge-request-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* 冲突处理样式 */
+.conflict-handling {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.conflict-info {
+  margin-bottom: 15px;
+}
+
+.conflict-info p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.conflict-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* 任务详情页面版本控制面板 */
+.version-control-panel {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.version-control-links {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.version-control-links .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.current-branch-info {
+  margin-top: 20px;
+}
+
+.branch-summary {
+  padding: 15px;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+}
+
+.branch-summary-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.branch-summary-header h4 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.branch-summary-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.branch-summary-meta .meta-item {
+  display: flex;
+  align-items: center;
+}
+
+.branch-summary-meta .meta-label {
+  font-weight: 500;
+  margin-right: 5px;
+}
+
+.branch-summary-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* 图标样式 */
+.icon-branches::before {
+  content: "⑂";
+  font-size: 16px;
+}
+
+.icon-merge::before {
+  content: "⤡";
+  font-size: 16px;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .branch-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .branch-actions {
+    margin-top: 10px;
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .merge-request-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .version-control-links {
+    flex-direction: column;
+  }
+
+  .version-control-links .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .branch-summary-meta {
+    flex-direction: column;
+  }
+}

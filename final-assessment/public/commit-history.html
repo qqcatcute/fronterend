@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>提交历史 - QG团队协作与版本管理平台</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/tasks.css">
+  <link rel="stylesheet" href="css/notifications.css">
+  <link rel="stylesheet" href="css/version-control.css">
+  <link rel="stylesheet" href="css/updated-version-control.css">
+  <link rel="shortcut icon" href="images/qg.png" type="image/x-icon">
+</head>
+
+<body>
+  <div class="app-container">
+    <!-- 头部开始 -->
+    <header class="app-header">
+      <div class="logo-container">
+        <img src="images/qg.png" alt="QG Logo" class="logo">
+        <h1>QG团队协作平台</h1>
+      </div>
+      <div class="header-right">
+        <div class="search-bar">
+          <input type="text" placeholder="搜索...">
+        </div>
+        <div class="notification-icon">
+          <span class="notification-badge" id="notificationBadge">0</span>
+          <i class="icon-bell"></i>
+        </div>
+        <div class="user-profile">
+          <img src="images/default-avatar.png" alt="User Avatar" onerror="this.src='images/default-avatar.png'">
+          <span class="username">用户</span>
+        </div>
+      </div>
+    </header>
+    <!-- 头部结束 -->
+
+    <!-- 主体开始 -->
+    <div class="app-content">
+      <!-- 旁栏 -->
+      <aside class="app-sidebar">
+        <nav class="sidebar-nav">
+          <ul>
+            <li><a href="dashboard.html"><i class="icon-dashboard"></i> 仪表盘</a></li>
+            <li><a href="teams.html"><i class="icon-team"></i> 团队管理</a></li>
+            <li class="active"><a href="tasks.html"><i class="icon-task"></i> 任务管理</a></li>
+            <li><a href="history.html"><i class="icon-history"></i> 历史记录</a></li>
+            <li><a href="settings.html"><i class="icon-settings"></i> 设置</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <div class="dashboard-header">
+          <h2>
+            <a href="branch-management.html?taskId=" class="back-link" id="backToBranches">
+              <i class="icon-back"></i> 返回分支管理
+            </a>
+            提交历史 - <span id="branchName">分支名称</span>
+          </h2>
+          <div class="quick-actions">
+            <button class="btn btn-primary" id="newCommitBtn">新建提交</button>
+          </div>
+        </div>
+
+        <!-- 提交列表 -->
+        <section class="dashboard-section">
+          <h3>提交记录</h3>
+          <div class="commits-container">
+            <div id="commitsHistory" class="commits-list">
+              <div class="team-loading">加载中...</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 提交详情 -->
+        <section class="dashboard-section" id="commitDetailsSection" style="display: none;">
+          <h3>提交详情</h3>
+          <div id="commitDetails" class="commit-details">
+            <!-- 动态加载提交详情 -->
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- 新建提交模态框 -->
+  <div id="commitModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h3>提交新版本</h3>
+      <form id="commitForm">
+        <div class="form-group">
+          <label for="commitTitle">标题</label>
+          <input type="text" id="commitTitle" name="title" required>
+        </div>
+        <div class="form-group">
+          <label for="commitDescription">描述</label>
+          <textarea id="commitDescription" name="description" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="commitContent">内容</label>
+          <textarea id="commitContent" name="content" rows="10" required></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary cancel-modal">取消</button>
+          <button type="submit" class="btn btn-primary">提交</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/session.js"></script>
+  <script src="js/header-notifications.js"></script>
+  <script src="js/commit-history.js"></script>
+</body>
+
+</html>

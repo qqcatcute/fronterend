@@ -1,0 +1,308 @@
+/* 团队卡片 */
+.teams-container {
+  margin-top: 20px;
+}
+
+/* .teams-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+} */
+
+.teams-list {
+  padding: 10px;
+}
+
+.team-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 40px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.team-card .team-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.team-card .team-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  margin-right: 15px;
+  background-color: #f0f1f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #0366d6;
+  font-weight: bold;
+}
+
+.team-card .team-title {
+  flex: 1;
+}
+
+.team-card .team-title h4 {
+  margin: 0 0 5px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.team-card .team-title .team-members {
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.team-card .team-description {
+  margin-top: 10px;
+  color: #555;
+  font-size: 14px;
+  flex-grow: 1;
+  /* 让描述区域填充剩余空间 */
+}
+
+.team-card .team-footer {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+  border-top: 1px solid #e1e4e8;
+}
+
+.team-card .team-meta {
+  color: #6c757d;
+  font-size: 12px;
+}
+
+.team-card .team-actions a {
+  color: #0366d6;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.team-card .team-actions a:hover {
+  text-decoration: underline;
+}
+
+/* 团队详情页 */
+.back-link {
+  color: #0366d6;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.team-info {
+  padding: 15px;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.team-info-header {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.team-info-header .team-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  margin-right: 20px;
+  background-color: #f0f1f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  color: #0366d6;
+  font-weight: bold;
+}
+
+.team-info-header .team-details {
+  flex: 1;
+}
+
+.team-info-header .team-name {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+}
+
+.team-info-header .team-meta {
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.team-info-description {
+  margin-top: 15px;
+  color: #555;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* 成员列表 */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.section-header h3 {
+  margin: 0;
+}
+
+.members-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.member-card {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 8px;
+  padding: 10px 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.member-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 12px;
+  object-fit: cover;
+}
+
+.member-info {
+  flex: 1;
+}
+
+.member-name {
+  font-weight: 500;
+  margin: 0 0 3px 0;
+}
+
+.member-role {
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.owner-role {
+  color: #e36209;
+}
+
+.admin-role {
+  color: #6f42c1;
+}
+
+.member-actions {
+  color: #6c757d;
+  cursor: pointer;
+}
+
+.member-actions:hover {
+  color: #0366d6;
+}
+
+/* 模态框样式 */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1050;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 0;
+  border: 1px solid #888;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  padding: 15px 20px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e1e4e8;
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-weight: 600;
+}
+
+.close-modal {
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+  color: black;
+  text-decoration: none;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+/* 加载指示器 */
+.team-loading {
+  text-align: center;
+  padding: 20px;
+  color: #6c757d;
+}
+
+/* 表单样式补充 */
+textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #e1e4e8;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #e1e4e8;
+  border-radius: 4px;
+  background-color: white;
+}
+
+/* 图标补充 */
+.icon-back:before {
+  content: "←";
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>注册 - QG团队协作与版本管理平台</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="shortcut icon" href="images/qg.png" type="image/x-icon">
+</head>
+
+<body>
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <img src="images/qg.png" alt="QG Logo" class="logo">
+        <h1>QG团队协作平台</h1>
+      </div>
+      <div class="auth-form">
+        <form id="registerForm">
+          <div class="form-group">
+            <label for="username">用户名</label>
+            <input type="text" id="username" name="username" required>
+          </div>
+          <div class="form-group">
+            <label for="email">邮箱</label>
+            <input type="email" id="email" name="email">
+            <small class="form-text">请输入邮箱地址</small>
+          </div>
+          <div class="form-group">
+            <label for="phone">手机号</label>
+            <input type="tel" id="phone" name="phone" pattern="1\d{10}" maxlength="11">
+            <small class="form-text">请输入11位手机号码</small>
+          </div>
+          <div class="form-group">
+            <label for="password">密码</label>
+            <input type="password" id="password" name="password" required minlength="6">
+            <small class="form-text">密码至少6个字符</small>
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">确认密码</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">注册</button>
+          </div>
+          <div class="form-footer">
+            <p>已有账号？<a href="index.html">登录</a></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="js/config.js"></script>
+  <script src="js/register.js"></script>
+</body>
+
+</html>

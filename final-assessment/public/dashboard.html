@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>仪表盘 - QG团队协作与版本管理平台</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/tasks.css">
+  <link rel="stylesheet" href="css/teams.css">
+  <link rel="stylesheet" href="css/notifications.css">
+  <link rel="shortcut icon" href="images/qg.png" type="image/x-icon">
+</head>
+
+<body>
+  <div class="app-container">
+    <!-- 头部开始 -->
+    <header class="app-header">
+      <div class="logo-container">
+        <img src="images/qg.png" alt="QG Logo" class="logo">
+        <h1>QG团队协作平台</h1>
+      </div>
+      <div class="header-right">
+        <div class="search-bar">
+          <input type="text" placeholder="搜索...">
+        </div>
+        <div class="notification-icon">
+          <span class="notification-badge" id="notificationBadge">0</span>
+          <i class="icon-bell"></i>
+        </div>
+        <div class="user-profile">
+          <img src="images/img.jpg" alt="User Avatar">
+          <span class="username">用户</span>
+        </div>
+      </div>
+    </header>
+    <!-- 头部结束 -->
+
+    <!-- 主体开始 -->
+    <div class="app-content">
+      <!-- 旁栏 -->
+      <aside class="app-sidebar">
+        <nav class="sidebar-nav">
+          <ul>
+            <li class="active"><a href="dashboard.html"><i class="icon-dashboard"></i> 仪表盘</a></li>
+            <li><a href="teams.html"><i class="icon-team"></i> 团队管理</a></li>
+            <li><a href="tasks.html"><i class="icon-task"></i> 任务管理</a></li>
+            <li><a href="history.html"><i class="icon-history"></i> 历史记录</a></li>
+            <li><a href="notifications.html"><i class="icon-bell"></i> 通知中心</a></li>
+            <li><a href="settings.html"><i class="icon-settings"></i> 设置</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- 主体内容 -->
+      <main class="main-content">
+        <div class="dashboard-header">
+          <h2>仪表盘</h2>
+          <div class="quick-actions">
+            <button class="btn btn-primary">创建任务</button>
+            <button class="btn btn-secondary">创建团队</button>
+          </div>
+        </div>
+
+        <!-- 统计卡片 -->
+        <div class="stats-cards">
+          <div class="stat-card">
+            <h4>待处理任务</h4>
+            <div class="stat-value">0</div>
+          </div>
+          <div class="stat-card">
+            <h4>进行中任务</h4>
+            <div class="stat-value">0</div>
+          </div>
+          <div class="stat-card">
+            <h4>已完成任务</h4>
+            <div class="stat-value">0</div>
+          </div>
+          <div class="stat-card">
+            <h4>我负责的任务</h4>
+            <div class="stat-value">0</div>
+          </div>
+        </div>
+
+        <!-- 最近活动 -->
+        <section class="dashboard-section">
+          <h3>最近活动</h3>
+          <div class="activity-feed">
+            <div class="activity-item">
+              <div class="activity-icon">
+                <i class="icon-task-created"></i>
+              </div>
+              <div class="activity-content">
+                <p>正在加载活动...</p>
+                <span class="activity-time">刚刚</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 最近任务 -->
+        <section class="dashboard-section">
+          <h3>最近任务</h3>
+          <div class="task-list">
+            <div class="task-item">
+              <div class="task-status task-status-progress"></div>
+              <div class="task-content">
+                <h4 class="task-title">正在加载任务...</h4>
+                <p class="task-desc">任务信息加载中，请稍候</p>
+              </div>
+              <div class="task-meta">
+                <div class="task-priority medium">中</div>
+                <div class="task-deadline">加载中...</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 我的团队 -->
+        <section class="dashboard-section">
+          <h3>我的团队</h3>
+          <div class="teams-container">
+            <div class="team-loading">加载中...</div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <!-- 主体结束 -->
+  </div>
+
+  <!-- 脚本引用 -->
+  <script src="js/config.js"></script>
+  <script src="js/session.js"></script>
+  <script src="js/header-notifications.js"></script>
+  <script src="js/notification-handler.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // 检查用户是否已登录
+      if (localStorage.getItem('token')) {
+        try {
+          // 获取用户信息
+          const userData = JSON.parse(localStorage.getItem('user'));
+          if (userData) {
+            // 更新用户名
+            const usernameElements = document.querySelectorAll('.username');
+            usernameElements.forEach(element => {
+              if (userData.username) {
+                element.textContent = userData.username;
+              }
+            });
+
+            // 更新用户头像
+            const avatarElements = document.querySelectorAll('.user-profile img');
+            avatarElements.forEach(element => {
+              if (userData.avatar) {
+                // 检查是否为完整URL
+                if (userData.avatar.startsWith('http')) {
+                  element.src = userData.avatar;
+                } else {
+                  element.src = userData.avatar.startsWith('/')
+                    ? API_BASE_URL + userData.avatar
+                    : API_BASE_URL + '/' + userData.avatar;
+                }
+                element.alt = userData.username || 'User Avatar';
+              }
+            });
+          }
+        } catch (error) {
+          console.error('加载用户信息时出错:', error);
+        }
+      } else {
+        // 未登录，重定向到登录页
+        window.location.href = 'index.html';
+      }
+
+      // 获取创建任务和创建团队按钮
+      const createTaskBtn = document.querySelector('.quick-actions .btn-primary');
+      const createTeamBtn = document.querySelector('.quick-actions .btn-secondary');
+
+      // 添加点击事件处理
+      if (createTaskBtn) {
+        createTaskBtn.addEventListener('click', function () {
+          window.location.href = 'teams.html?action=create';
+        });
+      }
+
+      if (createTeamBtn) {
+        createTeamBtn.addEventListener('click', function () {
+          window.location.href = 'teams.html?action=create';
+        });
+      }
+
+      // 加载仪表盘数据
+      loadDashboardData();
+      // 加载团队数据
+      loadTeamsData();
+      // 加载任务数据
+      loadTasksData();
+    });
+
+    /**
+     * 加载仪表盘数据
+     */
+    function loadDashboardData() {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+
+      // 加载任务统计数据
+      fetch(`${API_BASE_URL}/api/tasks/me`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('获取任务失败');
+          }
+          return response.json();
+        })
+        .then(data => {
+          updateTaskStats(data.data);
+        })
+        .catch(error => {
+          console.error('加载任务统计失败:', error);
+        });
+
+      // 加载最近活动
+      loadRecentActivities();
+    }
+
+    /**
+     * 更新任务统计信息
+     * @param {Array} tasks 任务数组
+     */
+    function updateTaskStats(tasks) {
+      // 任务分类计数
+      let stats = {
+        pending: 0,
+        in_progress: 0,
+        completed: 0,
+        assigned: 0
+      };
+
+      // 统计各类任务数量
+      const currentUser = JSON.parse(localStorage.getItem('user'));
+      const userId = currentUser ? currentUser.id : null;
+
+      tasks.forEach(task => {
+        // 计数各状态任务
+        if (task.status === 'pending') {
+          stats.pending++;
+        } else if (task.status === 'in_progress') {
+          stats.in_progress++;
+        } else if (task.status === 'completed') {
+          stats.completed++;
+        }
+
+        // 计数分配给用户的任务
+        if (task.assignedTo === userId) {
+          stats.assigned++;
+        }
+      });
+
+      // 更新UI显示
+      const pendingElem = document.querySelector('.stat-card:nth-child(1) .stat-value');
+      const progressElem = document.querySelector('.stat-card:nth-child(2) .stat-value');
+      const completedElem = document.querySelector('.stat-card:nth-child(3) .stat-value');
+      const assignedElem = document.querySelector('.stat-card:nth-child(4) .stat-value');
+
+      if (pendingElem) pendingElem.textContent = stats.pending;
+      if (progressElem) progressElem.textContent = stats.in_progress;
+      if (completedElem) completedElem.textContent = stats.completed;
+      if (assignedElem) assignedElem.textContent = stats.assigned;
+    }
+
+    /**
+     * 加载最近活动
+     */
+    function loadRecentActivities() {
+      // 使用通知数据作为最近活动
+      if (window.notificationHandler) {
+        window.notificationHandler.fetchNotifications()
+          .then(data => {
+            const activityFeed = document.querySelector('.activity-feed');
+            if (activityFeed && data.data && data.data.length > 0) {
+              // 清空现有内容
+              activityFeed.innerHTML = '';
+
+              // 取前3条通知作为活动
+              const recentActivities = data.data.slice(0, 3);
+              recentActivities.forEach(notification => {
+                const activityItem = document.createElement('div');
+                activityItem.className = 'activity-item';
+
+                // 获取图标类名
+                let iconClass = 'icon-bell';
+                switch (notification.type) {
+                  case 'task_assigned':
+                    iconClass = 'icon-task-created';
+                    break;
+                  case 'task_comment':
+                    iconClass = 'icon-comment';
+                    break;
+                  case 'team_invite':
+                    iconClass = 'icon-team';
+                    break;
+                }
+
+                // 获取链接
+                let linkHtml = '';
+                if (notification.relatedId) {
+                  if (notification.type.startsWith('task')) {
+                    linkHtml = `<a href="task-details.html?id=${notification.relatedId}">查看任务</a>`;
+                  } else if (notification.type.startsWith('team')) {
+                    linkHtml = `<a href="team-details.html?id=${notification.relatedId}">查看团队</a>`;
+                  }
+                }
+
+                // 格式化时间
+                const timeAgo = formatTimeAgo(new Date(notification.createdAt));
+
+                activityItem.innerHTML = `
+                  <div class="activity-icon">
+                    <i class="${iconClass}"></i>
+                  </div>
+                  <div class="activity-content">
+                    <p>${notification.content} ${linkHtml}</p>
+                    <span class="activity-time">${timeAgo}</span>
+                  </div>
+                `;
+
+                activityFeed.appendChild(activityItem);
+              });
+            } else {
+              // 如果没有活动，显示空状态
+              activityFeed.innerHTML = `
+                <div class="empty-message">
+                  目前没有任何活动记录
+                </div>
+              `;
+            }
+          })
+          .catch(error => {
+            console.error('加载最近活动失败:', error);
+            document.querySelector('.activity-feed').innerHTML = `
+              <div class="error-message">
+                加载活动失败: ${error.message || '未知错误'}
+              </div>
+            `;
+          });
+      } else {
+        // 如果通知处理器不可用
+        document.querySelector('.activity-feed').innerHTML = `
+          <div class="activity-item">
+            <div class="activity-icon">
+              <i class="icon-bell"></i>
+            </div>
+            <div class="activity-content">
+              <p>暂无活动记录，开始创建任务或加入团队来开始协作吧！</p>
+              <span class="activity-time">现在</span>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    /**
+     * 加载团队数据
+     */
+    function loadTeamsData() {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+
+      const teamsContainer = document.querySelector('.teams-container');
+      if (!teamsContainer) return;
+
+      fetch(`${API_BASE_URL}/api/teams/me`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('获取团队列表失败');
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (!data.data || data.data.length === 0) {
+            teamsContainer.innerHTML = `
+              <div class="empty-message">
+                您还没有加入任何团队，点击"创建团队"按钮开始使用。
+              </div>
+            `;
+            return;
+          }
+
+          // 显示最多3个团队
+          const teams = data.data.slice(0, 3);
+          const teamsHTML = teams.map(team => {
+            // 获取团队名称的首字母作为头像显示
+            const firstLetter = team.name.charAt(0).toUpperCase();
+
+            // 格式化创建时间
+            const createdDate = new Date(team.createdAt).toLocaleDateString();
+
+            return `
+              <div class="team-card">
+                <div class="team-header">
+                  <div class="team-avatar">${firstLetter}</div>
+                  <div class="team-title">
+                    <h4>${team.name}</h4>
+                    <div class="team-members">成员数量: ${team.members ? team.members.length : '...'}</div>
+                  </div>
+                </div>
+                <div class="team-description">
+                  ${team.description || '暂无描述'}
+                </div>
+                <div class="team-footer">
+                  <div class="team-meta">创建于 ${createdDate}</div>
+                  <div class="team-actions">
+                    <a href="team-details.html?id=${team.id}">查看详情</a>
+                  </div>
+                </div>
+              </div>
+            `;
+          }).join('');
+
+          teamsContainer.innerHTML = `
+            <div class="teams-list">
+              ${teamsHTML}
+            </div>
+            <div style="text-align: center; margin-top: 15px;">
+              <a href="teams.html" style="color: var(--primary-color); text-decoration: none;">查看全部团队</a>
+            </div>
+          `;
+        })
+        .catch(error => {
+          console.error('加载团队数据失败:', error);
+          teamsContainer.innerHTML = `
+            <div class="error-message">
+              加载团队失败: ${error.message || '未知错误'}
+            </div>
+          `;
+        });
+    }
+
+    /**
+     * 加载任务数据
+     */
+    function loadTasksData() {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+
+      const taskList = document.querySelector('.task-list');
+      if (!taskList) return;
+
+      fetch(`${API_BASE_URL}/api/tasks/me`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('获取任务列表失败');
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (!data.data || data.data.length === 0) {
+            taskList.innerHTML = `
+              <div class="empty-message">
+                您目前没有任何任务，点击"创建任务"按钮开始创建。
+              </div>
+            `;
+            return;
+          }
+
+          // 显示最多3个最近的任务
+          const tasks = data.data.slice(0, 3);
+          const tasksHTML = tasks.map(task => {
+            // 状态类名
+            const statusClass = `status-${task.status}`;
+            let statusText = '';
+            if (task.status === 'pending') {
+              statusText = '待处理';
+            } else if (task.status === 'in_progress') {
+              statusText = '进行中';
+            } else if (task.status === 'completed') {
+              statusText = '已完成';
+            }
+
+            // 优先级类名和文本
+            const priorityClass = `priority-${task.priority}`;
+            const priorityText = task.priority === 'high' ? '高' : (task.priority === 'medium' ? '中' : '低');
+
+            // 截止日期处理
+            let deadlineText = '无截止日期';
+            let deadlineClass = '';
+
+            if (task.deadline) {
+              const deadlineDate = new Date(task.deadline);
+              const now = new Date();
+
+              // 格式化日期时间
+              deadlineText = `截止: ${deadlineDate.toLocaleDateString()} ${deadlineDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+
+              // 如果已过期，添加过期样式
+              if (deadlineDate < now && task.status !== 'completed') {
+                deadlineClass = 'expired-deadline';
+              }
+            }
+
+            return `
+              <div class="task-item">
+                <div class="task-status ${statusClass}"></div>
+                <div class="task-content">
+                  <h4 class="task-title"><a href="task-details.html?id=${task.id}">${task.title}</a></h4>
+                  <p class="task-desc">${task.description || '无描述'} <span class="task-status-text">(${statusText})</span></p>
+                </div>
+                <div class="task-meta">
+                  <div class="task-priority ${priorityClass}">${priorityText}</div>
+                  <div class="task-deadline ${deadlineClass}">${deadlineText}</div>
+                </div>
+              </div>
+            `;
+          }).join('');
+
+          taskList.innerHTML = `
+            ${tasksHTML}
+            <div style="text-align: center; margin-top: 15px;">
+              <a href="tasks.html" style="color: var(--primary-color); text-decoration: none;">查看全部任务</a>
+            </div>
+          `;
+        })
+        .catch(error => {
+          console.error('加载任务数据失败:', error);
+          taskList.innerHTML = `
+            <div class="error-message">
+              加载任务失败: ${error.message || '未知错误'}
+            </div>
+          `;
+        });
+    }
+
+    /**
+     * 格式化时间为"几分钟前"的形式
+     * @param {Date} date 日期对象
+     * @returns {string} 格式化后的时间文本
+     */
+    function formatTimeAgo(date) {
+      const now = new Date();
+      const diffInSeconds = Math.floor((now - date) / 1000);
+
+      if (diffInSeconds < 60) {
+        return '刚刚';
+      }
+
+      const diffInMinutes = Math.floor(diffInSeconds / 60);
+      if (diffInMinutes < 60) {
+        return `${diffInMinutes}分钟前`;
+      }
+
+      const diffInHours = Math.floor(diffInMinutes / 60);
+      if (diffInHours < 24) {
+        return `${diffInHours}小时前`;
+      }
+
+      const diffInDays = Math.floor(diffInHours / 24);
+      if (diffInDays < 30) {
+        return `${diffInDays}天前`;
+      }
+
+      // 如果超过30天，显示具体日期
+      return date.toLocaleDateString();
+    }
+  </script>
+</body>
+
+</html>

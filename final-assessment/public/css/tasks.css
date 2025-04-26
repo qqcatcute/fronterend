@@ -1,0 +1,522 @@
+/* 任务过滤器 */
+.task-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+}
+
+.filter-group label {
+  margin-right: 8px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.filter-group select {
+  padding: 6px 10px;
+  border: 1px solid #e1e4e8;
+  border-radius: 4px;
+  font-size: 14px;
+  min-width: 120px;
+}
+
+/* 任务列表 */
+.tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-item {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  display: flex;
+  align-items: flex-start;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.task-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+}
+
+.task-status-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-top: 4px;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.status-pending {
+  background-color: #6c757d;
+}
+
+.status-in_progress {
+  background-color: #ffc107;
+}
+
+.status-completed {
+  background-color: #28a745;
+}
+
+.task-main-content {
+  flex: 1;
+}
+
+.task-main-content .task-title {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 0 5px 0;
+}
+
+.task-main-content .task-title a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.task-main-content .task-title a:hover {
+  text-decoration: underline;
+}
+
+.task-main-content .task-description {
+  font-size: 14px;
+  color: #555;
+  margin: 0 0 10px 0;
+}
+
+.task-main-content .task-team {
+  font-size: 13px;
+  color: #6c757d;
+  margin-top: 8px;
+}
+
+.task-meta {
+  margin-left: 15px;
+  min-width: 120px;
+}
+
+.task-priority {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  display: inline-block;
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.priority-high {
+  background-color: #ffeef0;
+  color: #dc3545;
+}
+
+.priority-medium {
+  background-color: #fff5cc;
+  color: #d9a500;
+}
+
+.priority-low {
+  background-color: #dcffe4;
+  color: #28a745;
+}
+
+.task-assignee {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.task-assignee img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.task-assignee span {
+  font-size: 13px;
+  color: #555;
+}
+
+.task-deadline {
+  font-size: 13px;
+  color: #6c757d;
+}
+
+.expired-deadline {
+  color: #dc3545;
+}
+
+/* 任务详情页 */
+.task-info {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.task-info-header {
+  margin-bottom: 20px;
+}
+
+.task-info-header .task-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+}
+
+.task-info-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.task-info-meta .meta-item {
+  display: flex;
+  align-items: center;
+}
+
+.task-info-meta .meta-label {
+  font-weight: 500;
+  margin-right: 5px;
+  color: #6c757d;
+}
+
+.task-description {
+  margin: 15px 0;
+  line-height: 1.6;
+}
+
+/* Comments List Styles */
+.comments-list {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.comment-item {
+  display: flex;
+  padding: 20px;
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.2s ease;
+}
+
+.comment-item:last-child {
+  border-bottom: none;
+}
+
+.comment-item:hover {
+  background-color: #f9f9fb;
+}
+
+.comment-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 16px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.comment-content {
+  flex: 1;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.comment-user {
+  font-weight: 600;
+  color: #2d333a;
+  margin-right: 12px;
+}
+
+.comment-time {
+  font-size: 13px;
+  color: #6c757d;
+}
+
+.comment-text {
+  line-height: 1.6;
+  color: #4a5568;
+  font-size: 15px;
+}
+
+/* Comment Form Styles */
+.comment-form-container {
+  margin-top: 20px;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+#addCommentForm .form-group {
+  margin-bottom: 15px;
+}
+
+#commentContent {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  resize: vertical;
+  min-height: 100px;
+  font-family: inherit;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  color: #4a5568;
+  background-color: #f9f9fb;
+}
+
+#commentContent:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.12);
+  outline: none;
+  background-color: white;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form-actions .btn {
+  padding: 8px 20px;
+  font-size: 15px;
+}
+
+/* Task History Styles */
+.task-history {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.history-item {
+  display: flex;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.2s ease;
+}
+
+.history-item:last-child {
+  border-bottom: none;
+}
+
+.history-item:hover {
+  background-color: #f9f9fb;
+}
+
+.history-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 16px;
+  flex-shrink: 0;
+}
+
+.history-content {
+  flex: 1;
+}
+
+.history-text {
+  margin-bottom: 6px;
+  line-height: 1.5;
+  color: #4a5568;
+}
+
+.history-text .highlight {
+  font-weight: 500;
+  color: #2d333a;
+}
+
+.history-time {
+  font-size: 13px;
+  color: #6c757d;
+}
+
+/* Activity Types */
+.history-changed-status .highlight {
+  color: #0366d6;
+}
+
+.history-changed-priority .highlight {
+  color: #d9a500;
+}
+
+.history-assigned .highlight {
+  color: #28a745;
+}
+
+.history-created .highlight {
+  color: #6f42c1;
+}
+
+/* Empty States */
+.empty-message {
+  padding: 40px 20px;
+  text-align: center;
+  color: #6c757d;
+  font-style: italic;
+  background-color: #f9f9fb;
+  border-radius: 8px;
+}
+
+/* Dashboard Section Improvements */
+.dashboard-section {
+  margin-bottom: 30px;
+}
+
+.dashboard-section h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2d333a;
+  margin-top: 0;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Back Button Enhancement */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  color: #6c757d;
+  text-decoration: none;
+  margin-right: 10px;
+  transition: color 0.2s ease;
+}
+
+.back-link:hover {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.icon-back {
+  font-size: 18px;
+  margin-right: 6px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+
+  .comment-item,
+  .history-item {
+    padding: 15px;
+  }
+
+  .comment-avatar {
+    width: 32px;
+    height: 32px;
+    margin-right: 12px;
+  }
+
+  .comment-header {
+    flex-direction: column;
+  }
+
+  .comment-time {
+    margin-top: 4px;
+  }
+}
+
+.inline-select {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.btn-small {
+  padding: 5px 10px;
+  font-size: 0.9em;
+  margin-left: 10px;
+}
+
+.info-item {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+/* 任务操作按钮样式 */
+.task-actions {
+  margin-top: 16px;
+}
+
+.edit-task-btn {
+  padding: 4px 12px;
+  font-size: 14px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.edit-task-btn:hover {
+  background-color: #e0e0e0;
+}
+
+/* 模态框表单样式 */
+#editTaskForm .form-group {
+  margin-bottom: 16px;
+}
+
+#editTaskForm label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+#editTaskForm input,
+#editTaskForm select,
+#editTaskForm textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+#editTaskForm textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+#editTaskForm .form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* 响应式样式调整 */
+@media (max-width: 768px) {
+  #editTaskForm .form-actions {
+    flex-direction: column;
+  }
+
+  #editTaskForm .form-actions button {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+}
